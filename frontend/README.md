@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# AI Pipeline Builder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository features a fully functional, highly interactive ReactFlow node-based canvas on the frontend, powered by a FastAPI Python backend to validate incoming pipeline DAGs (Directed Acyclic Graphs).
 
-## Available Scripts
+## Key Features
+- **Interactive Node Canvas:** Uses `reactflow` to let users drag, drop, and connect pipeline logic nodes (LLMs, Inputs, Outputs, APIs, etc.).
+- **"Premium SaaS" Gamification:** Intentionally designed with an ultra-premium glassmorphic aesthetic inspired by Vercel and Stripe.
+- **Advanced Animations:** Features CSS Houdini `@property` animated glowing borders, `framer-motion` sliding toast notifications, and `gsap` physics springs for dragging nodes and hovering components.
+- **Dynamic Theming:** Deeply integrated React Context provider for seamlessly toggling between Dark Mode and Light Mode.
+- **Fullstack Validation:** Connects to a FastAPI backend endpoint to mathematically analyze the graph and detect cycles in the DAG.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 How to Run the Application Locally
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To run this project, you need to step into both the `backend` and `frontend` directories and start them in two separate terminal windows.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. Start the Backend (FastAPI)
 
-### `npm test`
+The backend parses the nodes and edges from the frontend to determine if the pipeline forms a valid Directed Acyclic Graph.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Open a new terminal window.
+2. Navigate into the `backend` directory:
+   ```bash
+   cd backend
+   ```
+3. *(Optional but recommended)* Create and activate a Python virtual environment:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+4. Install the required dependencies:
+   ```bash
+   pip install fastapi uvicorn pydantic
+   ```
+   *(This ensures the server routing and data validation libraries are installed).*
 
-### `npm run build`
+5. Start the backend server:
+   ```bash
+   python3 -m uvicorn main:app --reload --port 8000
+   ```
+   *The backend should now be running cleanly at `http://localhost:8000`.*
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. Start the Frontend (React)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The frontend contains the interactive UI, rendering the ReactFlow canvas and communicating with the backend.
 
-### `npm run eject`
+1. Open a **second** (separate) terminal window.
+2. Navigate into the `frontend` directory:
+   ```bash
+   cd frontend
+   ```
+3. Install the Node.js dependencies:
+   ```bash
+   npm install
+   ```
+   *(This single command automatically installs all the advanced libraries I added, including `reactflow`, `framer-motion`, `gsap`, `animejs`, `lucide-react`, `zustand`, and `axios`).*
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+   *Your browser will automatically open to `http://localhost:3000` displaying the loaded application.*
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Build a Pipeline:** Drag nodes (e.g., Input, Output, LLM) from the left sidebar onto the dotted background canvas.
+2. **Connect Nodes:** Click and drag the handles (the small dots on the sides of the nodes) to connect them to each other.
+3. **Toggle Theme:** Click the "Light Mode / Dark Mode" toggle in the top right corner to instantly switch the app's aesthetic.
+4. **Analyze Graph:** Click the **"Run Pipeline"** button in the top right corner. The frontend will bundle your graph, send it to the FastAPI backend running on port 8000, and a sleek toast notification will physically slide up from the bottom to tell you how many nodes/edges you have and whether the graph is a mathematically valid DAG.
