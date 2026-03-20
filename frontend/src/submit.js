@@ -21,7 +21,8 @@ export const SubmitButton = () => {
         setResult(null);
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/pipelines/parse', {
+            const baseUrl = process.env.REACT_APP_BACKEND_URL || 'http://127.0.0.1:8000';
+            const response = await axios.post(`${baseUrl}/pipelines/parse`, {
                 nodes: nodes,
                 edges: edges
             });
