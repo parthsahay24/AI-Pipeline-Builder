@@ -33,7 +33,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: var(--bg);
   color: var(--text-main);
-  overflow: hidden; 
+  overflow: hidden;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
@@ -62,7 +62,10 @@ body {
 .base-node::before {
   content: "";
   position: absolute;
-  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
   background: conic-gradient(from var(--node-angle), transparent 60%, rgba(139, 92, 246, 0.8), rgba(6, 182, 212, 1));
   z-index: -1;
   border-radius: 18px;
@@ -70,7 +73,8 @@ body {
   transition: opacity 0.4s ease;
 }
 
-.base-node:hover::before, .base-node.selected::before {
+.base-node:hover::before,
+.base-node.selected::before {
   opacity: 1;
   animation: spinNode 3s linear infinite;
 }
@@ -92,7 +96,8 @@ body {
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), inset 0 -1px 1px rgba(0, 0, 0, 0.05);
 }
 
-.base-node:hover, .base-node.selected {
+.base-node:hover,
+.base-node.selected {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 12px 30px -5px rgba(6, 182, 212, 0.25), 0 8px 10px -6px rgba(139, 92, 246, 0.15);
 }
@@ -131,7 +136,10 @@ label {
   color: var(--text-muted);
 }
 
-input[type="text"], input[type="number"], select, textarea {
+input[type="text"],
+input[type="number"],
+select,
+textarea {
   background: var(--input-bg);
   border: 1px solid rgba(150, 150, 150, 0.2);
   border-radius: 8px;
@@ -145,18 +153,18 @@ input[type="text"], input[type="number"], select, textarea {
 }
 
 textarea {
-  resize: none; 
+  resize: none;
   overflow: hidden;
   min-height: 40px;
 }
 
-input[type="text"]:focus, select:focus, textarea:focus {
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
-/* FIX: ReactFlow connection lines piercing nodes visually */
-/* We push the handles outward dynamically and anchor z-index */
 .react-flow__handle {
   width: 12px !important;
   height: 12px !important;
@@ -165,12 +173,15 @@ input[type="text"]:focus, select:focus, textarea:focus {
   transition: transform 0.2s, box-shadow 0.2s !important;
   z-index: 10 !important;
 }
+
 .react-flow__handle-left {
   left: -8px !important;
 }
+
 .react-flow__handle-right {
   right: -8px !important;
 }
+
 .react-flow__handle:hover {
   transform: scale(1.4);
   box-shadow: 0 0 10px var(--accent-glow);
@@ -209,7 +220,8 @@ input[type="text"]:focus, select:focus, textarea:focus {
   position: relative;
   overflow: hidden;
   border-radius: 8px 24px 24px 8px;
-  padding: 2px; /* Space for the animated border */
+  padding: 2px;
+  
   background: rgba(15, 23, 42, 0.3);
   cursor: grab;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -220,8 +232,10 @@ input[type="text"]:focus, select:focus, textarea:focus {
 .draggable-item::before {
   content: "";
   position: absolute;
-  top: 50%; left: 50%;
-  width: 250%; height: 250%;
+  top: 50%;
+  left: 50%;
+  width: 250%;
+  height: 250%;
   background: conic-gradient(from 0deg, transparent 70%, #8B5CF6, #06B6D4);
   transform-origin: 0 0;
   animation: reactBitsSpin 3s linear infinite;
@@ -235,8 +249,13 @@ input[type="text"]:focus, select:focus, textarea:focus {
 }
 
 @keyframes reactBitsSpin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .draggable-item-inner {
@@ -298,6 +317,7 @@ input[type="text"]:focus, select:focus, textarea:focus {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.2s;
 }
+
 .theme-toggle-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
@@ -309,7 +329,7 @@ input[type="text"]:focus, select:focus, textarea:focus {
   position: relative;
 }
 
-/* Submit Button & Toasts unchanged but mapping to var() now */
+
 .submit-container {
   position: absolute;
   top: 24px;
@@ -319,6 +339,7 @@ input[type="text"]:focus, select:focus, textarea:focus {
   align-items: center;
   gap: 12px;
 }
+
 .submit-btn {
   background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
   color: white;
@@ -356,12 +377,16 @@ input[type="text"]:focus, select:focus, textarea:focus {
 .result-toast::before {
   content: "";
   position: absolute;
-  top: -1px; left: -1px; right: -1px; bottom: -1px;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
   border-radius: 21px;
   z-index: -1;
   background: linear-gradient(135deg, var(--success), transparent 60%);
   opacity: 0.5;
 }
+
 .result-toast.error::before {
   background: linear-gradient(135deg, var(--error), transparent 60%);
 }
@@ -375,10 +400,12 @@ input[type="text"]:focus, select:focus, textarea:focus {
   border-radius: 12px;
   flex-shrink: 0;
 }
+
 .result-toast.success .result-toast-icon-box {
   background: rgba(5, 150, 105, 0.15);
   color: var(--success);
 }
+
 .result-toast.error .result-toast-icon-box {
   background: rgba(220, 38, 38, 0.15);
   color: var(--error);
@@ -397,6 +424,7 @@ input[type="text"]:focus, select:focus, textarea:focus {
   letter-spacing: 0.3px;
   color: var(--text-main);
 }
+
 .result-toast-body {
   display: flex;
   flex-direction: column;
@@ -404,6 +432,7 @@ input[type="text"]:focus, select:focus, textarea:focus {
   font-size: 13px;
   margin-top: 4px;
 }
+
 .result-toast-row {
   display: flex;
   justify-content: space-between;
@@ -412,29 +441,33 @@ input[type="text"]:focus, select:focus, textarea:focus {
 }
 
 
-/* --- Loader Animation (AnimeJS/GSAP cinematic) --- */
-.loader-container {
+/* --- VectorShift Pipeline Loader --- */
+.framer-loader-container {
   position: fixed;
   inset: 0;
-  background: #0F172A;
+  background: var(--bg);
   z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.framer-loader-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 30px;
+  gap: 32px;
 }
-.loader-graphics { display: flex; gap: 15px; }
-.loader-box { width: 40px; height: 40px; background: #6366F1; border-radius: 8px; opacity: 0; transform: scale(0); }
-.loader-text {
-  color: white;
-  font-weight: 800;
-  letter-spacing: 8px;
-  font-size: 2rem;
-  margin: 0;
-}
-.loader-text .letter { opacity: 0; transform: translateY(20px); }
 
+.framer-loader-text {
+  color: #F8FAFC;
+  font-weight: 700;
+  letter-spacing: 14px;
+  font-size: 1.8rem;
+  margin: 0;
+  display: flex;
+  gap: 2px;
+}
 
 
 /* Overriding ReactFlow default minimap */
@@ -443,5 +476,5 @@ input[type="text"]:focus, select:focus, textarea:focus {
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(150, 150, 150, 0.2);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
