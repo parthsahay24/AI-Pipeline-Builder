@@ -1,17 +1,3 @@
-"""
-VS Code Python Interpreter Fix:
-If lines 1 and 2 are showing yellow squiggly lines (Import "fastapi" could not be resolved), 
-it means VS Code is currently using your Mac's default Python interpreter instead of the one 
-where we installed FastAPI.
-
-How to fix in VS Code:
-1. Press Cmd+Shift+P (Mac) to open the Command Palette.
-2. Type and select "Python: Select Interpreter".
-3. Choose the Python path that matches your current global or virtual environment (often it will say something like `/usr/local/bin/python3` or `/Library/Frameworks/...`).
-
-This code perfectly validates DAGs, the squiggles are just an IDE path settings issue!
-"""
-
 from fastapi import FastAPI, Body
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict, Any
