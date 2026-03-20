@@ -17,7 +17,7 @@ export const Loader = ({ onComplete }) => {
     return () => clearTimeout(timer);
   }, [onComplete]);
 
-  const text = "AI PIPELINE BUILDER";
+  const text = "𓆩AI⬩PIPELINE⬩BUILDER𓆪";
 
   // Framer Motion Variants
   const containerVariants = {
